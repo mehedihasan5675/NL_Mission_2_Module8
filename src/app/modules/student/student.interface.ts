@@ -1,5 +1,7 @@
 // 1. Create an interface representing a document in MongoDB.
 
+import { Model } from 'mongoose'
+
 export type TGuardian = {
   fatherName: string
   fatherOccupation: string
@@ -36,3 +38,12 @@ export type TStudent = {
   profileImg?: string
   isActive: 'active' | 'blocked'
 }
+
+export type StudentMethods = {
+  isUserExists(id: string): Promise<TStudent | null>
+}
+export type StudentModel = Model<
+  TStudent,
+  Record<string, never>,
+  StudentMethods
+>
